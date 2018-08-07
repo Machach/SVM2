@@ -1,25 +1,54 @@
+import csv
 import pandas as pd
+import numpy as np
+from sklearn.svm import LinearSVC
+from sklearn.multiclass import OneVsOneClassifier
 
-def arff_to_csv(fpath):
-    if fpath.find('.arff')<0:
-        print('not a .arff file')
-        return
-    f=open(fpath)
-    lines=f.readlines()
-    content=[]
-    for l in lines:
-        content.append(l)
-    datas=[]
-    for c in content:
-        cs=c.split(',')
-        datas.append(cs)
+df=pd.read_csv('E:\python test\SVM2\datasets\Yeast\yeast-train.csv')
 
 
-    df=pd.DataFrame(data=datas,index=None,columns=None)
-    filename=fpath[:fpath.find('.arff')]+'.csv'
-    df.to_csv(filename,index=None)
+X_train=df.iloc[:,:103]
+Y_train=df.iloc[:,103:117]
+print(Y_train)
+X_traindata=pd.DataFrame(X_train)
+
+Y_traindata=pd.DataFrame(Y_train)
 
 
-arff_to_csv('E:\python test\SVM2\datasets\Scene\Scene.arff')
+
+def iniClass():
+    for i in range(14):
+        Class
+
+
+
+
+
+
+
+
+
+
+
+
+Class12=[]
+for i in range(1500):
+    if Y_traindata.ix[i][0]==Y_traindata.ix[i][1]:
+        Class12.append('')
+    elif Y_traindata.ix[i][0]>Y_traindata.ix[i][1]:
+        Class12.append(1)
+    else:
+        Class12.append(0)
+
+
+print(Class12)
+
+
+
+clf=LinearSVC()
+clf.fit(X_traindata,Class12)
+
+
+
 
 

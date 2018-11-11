@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 import xlwt
 import numpy as np
 from sklearn import svm
@@ -10,16 +11,32 @@ X_test = df1._iloc[1001:,:103]
 imp = Imputer(missing_values='NaN',strategy='mean',axis=1)
 
 
-df2 = pd.read_excel('E:/PycharmProjects/SVM2/2class.xls')
-Y_train = df2.iloc[1:1001,0:1].fillna(value=np.nan)
-#
-# print(Y_train)
-Y_train1 = imp.transform(Y_train)
-clf = svm.SVC()
-print(imp.transform(Y_train))
+df2 = pd.read_excel('E:/PycharmProjects/SVM2/222class.xls')
+Y_train = df2.iloc[0:1001,1:2]
 
-clf.fit(X_train,imp.transform(Y_train).values.ravel())
+result = pd.merge(X_train,Y_train,on=None,left_index=True,right_index=True)
+result=result.dropna(axis=0)
+
+
+X_train1=result.iloc[0:1000,:103]
+Y_train1=result.iloc[0:1000,103:]
+#
+# print(X_train1)
+# print(Y_train1)
+
+# X_train=X_train.drop(axis=0,inplace=False)
+# Y_train=Y_train.dropna(axis=0)
+#
+
+clf = svm.SVR()
+
+
+
+
+clf.fit(X_train1,Y_train1.astype('int'))
+
+
 Y_test = clf.predict(X_test)
-print(Y_test)
+print('result:',Y_test)
 
 

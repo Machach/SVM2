@@ -34,7 +34,7 @@ def tt(alist,a,b):#创建二分类分类结果
         elif Y_traindata.ix[i][a]>Y_traindata.ix[i][b]:
             alist.append(1)
         else:
-            alist.append(0)
+            alist.append(-1)
 
 #训练
 # list=[]
@@ -60,7 +60,7 @@ for i in range(14):
             table1.write(k,m,list[k])
         m=m+1
 
-file.save(r'E:\PycharmProjects\SVM2\22class.xls')
+file.save(r'E:\PycharmProjects\SVM2\222class.xls')
 
 
 
